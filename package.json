@@ -1,0 +1,9 @@
+{
+  "name": "eslint-config-pulsovi",
+  "version": "1.0.0",
+  "description": "my eslint shared config",
+  "main": "base.json",
+  "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
+  "author": "David GABISON <david.gabison@outlook.com>",
+  "license": "MIT"
+}

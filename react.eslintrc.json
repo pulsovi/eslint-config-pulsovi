@@ -1,0 +1,34 @@
+{
+  "env": {
+    "browser": true,
+    "node": false
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "pulsovi"
+  ],
+  "overrides": [{
+    "files": ["*.jsx", "*.js"]
+  }],
+  "parser": "espree",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks"
+  ],
+  "settings": {
+    "import/resolver": {
+        "node": { "extensions": [".js", ".jsx"] }
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react/no-typos": "error",
+    "react/prop-types": "error"
+  }
+}

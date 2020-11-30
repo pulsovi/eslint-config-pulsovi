@@ -1,0 +1,6 @@
+{
+  "extends": ["pulsovi"],
+  "rules": {
+    "no-console": ["warn", { "allow": ["error", "info"]}]
+  }
+}
