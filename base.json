@@ -167,7 +167,7 @@
     "no-new-require": "error",
     "no-new-wrappers": "error",
     "no-octal-escape": "error",
-    "no-param-reassign": ["error", { "props": true }],
+    "no-param-reassign": ["error", { "props": false }],
     "no-path-concat": "error",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-process-env": "warn",
