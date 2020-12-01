@@ -18,6 +18,11 @@
     "react",
     "react-hooks"
   ],
+  "settings": {
+    "import/resolver": {
+        "node": { "extensions": [".js", ".jsx"] }
+    }
+  },
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react/no-typos": "error",
