@@ -1,13 +1,9 @@
 {
-  "env": {
-    "browser": true,
-    "node": false
-  },
   "extends": [
     "react-app",
     "react-app/jest",
     "plugin:react/recommended",
-    "pulsovi"
+    "pulsovi/browser"
   ],
   "overrides": [{
     "files": ["*.jsx", "*.js"]

@@ -1,7 +1,3 @@
 {
-  "env": {
-    "browser": true,
-    "node": false
-  },
-  "extends": ["pulsovi"]
+  "extends": ["pulsovi/browser"]
 }
