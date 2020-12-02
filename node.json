@@ -1,5 +1,6 @@
 {
   "extends": ["pulsovi"],
+  "ignorePatterns": ["node_modules"],
   "rules": {
     "no-console": ["warn", { "allow": ["error", "info"]}]
   }
