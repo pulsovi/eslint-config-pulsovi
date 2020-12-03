@@ -44,7 +44,7 @@
     "computed-property-spacing": ["error", "never"],
     "consistent-return": "warn",
     "consistent-this": "error",
-    "curly": ["error", "multi-or-nest"],
+    "curly": ["error", "multi-or-nest", "consistent"],
     "default-case": "error",
     "default-param-last": "error",
     "dot-location": ["error", "property"],
