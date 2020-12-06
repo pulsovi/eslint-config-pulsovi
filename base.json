@@ -66,7 +66,6 @@
     "implicit-arrow-linebreak": "warn",
     "import/extensions": ["error", "never"],
     "import/no-extraneous-dependencies": ["error", {
-        "devDependencies": true,
         "optionalDependencies": false,
         "peerDependencies": false
     }],
