@@ -67,7 +67,7 @@
     "import/extensions": ["error", "never"],
     "import/no-extraneous-dependencies": ["error", {
         "optionalDependencies": false,
-        "peerDependencies": false
+        "peerDependencies": true
     }],
     "import/order": ["error", {
         "alphabetize": {"order": "asc", "caseInsensitive": true},
