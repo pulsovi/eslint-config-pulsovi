@@ -248,7 +248,6 @@
       "unnecessary": false,
       "numbers": true
     }],
-    "quotes": ["error", "single", { "avoidEscape": true }],
     "radix": "error",
     "require-await": "error",
     "require-unicode-regexp": "error",
