@@ -69,6 +69,7 @@
         "optionalDependencies": false,
         "peerDependencies": true
     }],
+    "import/no-unused-modules": ["warn", {"unusedExports": true}],
     "import/order": ["error", {
         "alphabetize": {"order": "asc", "caseInsensitive": true},
         "groups": [
