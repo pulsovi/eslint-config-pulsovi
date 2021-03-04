@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "my eslint shared config",
   "main": "base.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
