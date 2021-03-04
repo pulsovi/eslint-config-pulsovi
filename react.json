@@ -23,6 +23,7 @@
     }
   },
   "rules": {
+    "max-lines-per-function": "off",
     "react-hooks/rules-of-hooks": "error",
     "react/no-typos": "error",
     "react/prop-types": "error"
