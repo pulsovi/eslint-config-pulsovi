@@ -100,7 +100,15 @@
     "lines-between-class-members": ["error", "always"],
     "max-classes-per-file": "error",
     "max-depth": "error",
-    "max-len": ["error", { "code": 101 }],
+    "max-len": ["error", {
+      "code": 101,
+      "tabWidth": 2,
+      "ignoreComments": false,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true
+    }],
     "max-lines": "error",
     "max-lines-per-function": "warn",
     "max-nested-callbacks": "error",
