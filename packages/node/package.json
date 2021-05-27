@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-node",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "my eslint shared config for native node projects",
   "main": "index.json",
   "files": [
