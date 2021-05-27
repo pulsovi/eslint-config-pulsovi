@@ -1,9 +1,11 @@
 {
   "name": "eslint-config-pulsovi-node",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "my eslint shared config for native node projects",
   "main": "index.json",
-  "files": ["index.json"],
+  "files": [
+    "index.json"
+  ],
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
@@ -11,6 +13,7 @@
     "eslint-config-pulsovi": "*"
   },
   "peerDependencies": {
+    "eslint-config-airbnb": "*",
     "eslint-plugin-node": "*"
   }
 }

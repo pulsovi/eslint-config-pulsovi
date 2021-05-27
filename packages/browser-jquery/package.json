@@ -7,6 +7,7 @@
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "peerDependencies": {
+    "eslint-config-airbnb": "*",
     "eslint-config-pulsovi": "*",
     "eslint-config-pulsovi-browser": "*"
   }

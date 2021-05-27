@@ -10,6 +10,7 @@
     "eslint-config-pulsovi": "*"
   },
   "peerDependencies": {
+    "eslint-config-airbnb": "*",
     "eslint-config-pulsovi-browser": "*",
     "eslint-config-react-app": "*",
     "eslint-plugin-react": "*",
