@@ -13,7 +13,9 @@
     "eslint-config-pulsovi": "*"
   },
   "peerDependencies": {
-    "eslint-config-airbnb": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-plugin-import": "*",
     "eslint-plugin-node": "*"
   }
 }

@@ -7,8 +7,10 @@
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "peerDependencies": {
-    "eslint-config-airbnb": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
     "eslint-config-pulsovi": "*",
-    "eslint-config-pulsovi-browser": "*"
+    "eslint-config-pulsovi-browser": "*",
+    "eslint-plugin-import": "*"
   }
 }

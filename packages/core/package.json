@@ -14,12 +14,14 @@
     "react.json"
   ],
   "peerDependencies": {
-    "eslint-config-airbnb": "*",
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
     "eslint-config-pulsovi-browser": "*",
     "eslint-config-pulsovi-browser-jquery": "*",
     "eslint-config-pulsovi-node": "*",
     "eslint-config-pulsovi-node-webkit": "*",
-    "eslint-config-pulsovi-react": "*"
+    "eslint-config-pulsovi-react": "*",
+    "eslint-plugin-import": "*"
   },
   "peerDependenciesMeta": {
     "eslint-config-pulsovi-browser": {
