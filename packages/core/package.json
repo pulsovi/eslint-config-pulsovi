@@ -3,9 +3,16 @@
   "version": "2.5.0",
   "description": "my eslint shared config",
   "main": "index.json",
-  "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
+  "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
+  "files": [
+    "browser-jquery.json",
+    "browser.json",
+    "node-webkit.json",
+    "node.json",
+    "react.json"
+  ],
   "peerDependencies": {
     "eslint-config-pulsovi-browser": "*",
     "eslint-config-pulsovi-browser-jquery": "*",
