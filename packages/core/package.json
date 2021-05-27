@@ -1,0 +1,33 @@
+{
+  "name": "eslint-config-pulsovi",
+  "version": "2.5.0",
+  "description": "my eslint shared config",
+  "main": "index.json",
+  "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
+  "author": "David GABISON <david.gabison@outlook.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "eslint-config-pulsovi-browser": "*",
+    "eslint-config-pulsovi-browser-jquery": "*",
+    "eslint-config-pulsovi-node": "*",
+    "eslint-config-pulsovi-node-webkit": "*",
+    "eslint-config-pulsovi-react": "*"
+  },
+  "peerDependenciesMeta": {
+    "eslint-config-pulsovi-browser": {
+      "optional": true
+    },
+    "eslint-config-pulsovi-browser-jquery": {
+      "optional": true
+    },
+    "eslint-config-pulsovi-node": {
+      "optional": true
+    },
+    "eslint-config-pulsovi-node-webkit": {
+      "optional": true
+    },
+    "eslint-config-pulsovi-react": {
+      "optional": true
+    }
+  }
+}
