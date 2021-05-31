@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-browser",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "my eslint shared config for front-end projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",

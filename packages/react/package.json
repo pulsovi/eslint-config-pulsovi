@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-react",
-  "version": "0.0.0",
+  "version": "2.5.5",
   "description": "my eslint shared config for react projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
