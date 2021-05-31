@@ -10,12 +10,10 @@
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi": "*"
+    "eslint-config-pulsovi": "*",
+    "eslint-plugin-node": "*"
   },
   "peerDependencies": {
-    "eslint": "*",
-    "eslint-config-airbnb-base": "*",
-    "eslint-plugin-import": "*",
-    "eslint-plugin-node": "*"
+    "eslint": "*"
   }
 }
