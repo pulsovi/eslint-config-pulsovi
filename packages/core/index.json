@@ -179,7 +179,6 @@
     "no-param-reassign": ["error", { "props": false }],
     "no-path-concat": "error",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "no-process-env": "warn",
     "no-process-exit": "error",
     "no-proto": "error",
     "no-restricted-globals": "error",
