@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-browser",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "my eslint shared config for front-end projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
@@ -8,10 +8,5 @@
   "license": "MIT",
   "dependencies": {
     "eslint-config-pulsovi": "*"
-  },
-  "peerDependencies": {
-    "eslint": "*",
-    "eslint-config-airbnb-base": "*",
-    "eslint-plugin-import": "*"
   }
 }
