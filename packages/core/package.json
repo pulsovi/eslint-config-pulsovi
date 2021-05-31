@@ -13,15 +13,17 @@
     "node.json",
     "react.json"
   ],
-  "peerDependencies": {
+  "dependencies": {
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
+    "eslint-plugin-import": "*"
+  },
+  "peerDependencies": {
     "eslint-config-pulsovi-browser": "*",
     "eslint-config-pulsovi-browser-jquery": "*",
     "eslint-config-pulsovi-node": "*",
     "eslint-config-pulsovi-node-webkit": "*",
-    "eslint-config-pulsovi-react": "*",
-    "eslint-plugin-import": "*"
+    "eslint-config-pulsovi-react": "*"
   },
   "peerDependenciesMeta": {
     "eslint-config-pulsovi-browser": {
