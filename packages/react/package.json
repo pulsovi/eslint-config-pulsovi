@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-react",
-  "version": "2.5.5",
+  "version": "2.5.6",
   "description": "my eslint shared config for react projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
@@ -11,12 +11,11 @@
     "@typescript-eslint/parser": "*",
     "babel-eslint": "*",
     "eslint": "*",
-    "eslint-config-airbnb": "*",
-    "eslint-config-pulsovi": "*",
     "eslint-config-pulsovi-browser": "*",
     "eslint-config-react-app": "*",
     "eslint-plugin-flowtype": "*",
     "eslint-plugin-import": "*",
+    "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-jsx-a11y": "*",
     "eslint-plugin-react": "*",
     "eslint-plugin-react-hooks": "*"
