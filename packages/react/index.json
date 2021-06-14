@@ -3,8 +3,7 @@
     "react-app",
     "react-app/jest",
     "plugin:react/recommended",
-    "pulsovi-browser",
-    "airbnb"
+    "pulsovi-browser"
   ],
   "ignorePatterns": ["build", "node_modules"],
   "overrides": [{
