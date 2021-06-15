@@ -23,6 +23,10 @@
     }
   },
   "rules": {
+    "import/no-unused-modules": ["warn", {
+      "ignoreExports": ["rollup.config.js"],
+      "unusedExports":true
+    }],
     "max-lines-per-function": "off",
     "react-hooks/rules-of-hooks": "error",
     "react/no-typos": "error",
