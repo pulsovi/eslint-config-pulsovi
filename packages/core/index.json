@@ -14,6 +14,7 @@
   "parserOptions": {
     "ecmaVersion": 2020
   },
+  "plugins": ["eslint-plugin-pulsovi"],
   "reportUnusedDisableDirectives": true,
   "rules": {
     "accessor-pairs": "error",
@@ -159,7 +160,7 @@
     "no-lone-blocks": "error",
     "no-lonely-if": "error",
     "no-loop-func": "error",
-    "no-magic-numbers": ["warn", { "ignore": [-2, -1, 0, 1, 2] }],
+    "no-magic-numbers": ["warn", { "ignore": [-2, -1, 0, 1, 2, 1000] }],
     "no-mixed-operators": "error",
     "no-mixed-requires": "error",
     "no-multi-assign": "error",
@@ -234,11 +235,6 @@
     "operator-assignment": ["error", "always"],
     "operator-linebreak": ["error", "after"],
     "padded-blocks": ["warn", "never"],
-    "padding-line-between-statements": [
-        "warn",
-        { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
-        { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "return", "let", "var"]}
-    ],
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "prefer-destructuring": "error",
@@ -251,6 +247,11 @@
     "prefer-rest-params": "error",
     "prefer-spread": "error",
     "prefer-template": "error",
+    "pulsovi/padding-line-between-statements": [
+        "warn",
+        { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
+        { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var", "return", "implicit-return"]}
+    ],
     "quote-props": ["error", "as-needed", {
       "keywords": true,
       "unnecessary": false,
