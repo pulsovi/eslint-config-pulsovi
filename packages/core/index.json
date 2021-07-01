@@ -250,6 +250,7 @@
     "pulsovi/padding-line-between-statements": [
         "warn",
         { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
+        { "blankLine": "any", "prev": ["singleline-const", "singleline-let", "singleline-var"], "next": "*"},
         { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var", "return", "implicit-return"]}
     ],
     "quote-props": ["error", "as-needed", {
