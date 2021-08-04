@@ -1,0 +1,15 @@
+diff --git a/lib/getPackagePaths.js b/lib/getPackagePaths.js
+index 39d8b3125ae5bcb1d3458c5a6f7742578c48130e..6defd5b7807caf26cd79835d92759084a9a1a22d 100644
+--- a/lib/getPackagePaths.js
++++ b/lib/getPackagePaths.js
+@@ -36,7 +36,9 @@ function getPackagePaths(cwd, ignorePackages = null) {
+ 
+ 	// Turn workspaces into list of package.json files.
+ 	const workspacePackages = glob(
+-		packages.map((p) => p.replace(/\/?$/, "/package.json")),
++		packages
++			.map((p) => process.platform === "win32" ? p.replace(/\\/g, '/') : p)
++			.map((p) => p.replace(/\/?$/, "/package.json")),
+ 		{
+ 			cwd: cwd,
+ 			absolute: true,

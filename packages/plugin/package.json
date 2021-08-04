@@ -6,7 +6,7 @@
       "eslint"
     ]
   },
-  "repository": "git@github.com:pulsovi/eslint-plugin-pulsovi.git",
+  "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "dependencies": {
     "debug": "^4.3.1",
     "eslint": "^7.29.0"
