@@ -2,5 +2,12 @@
   "private": true,
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-pulsovi-node": "workspace:eslint-config-pulsovi/packages/node"
+  },
+  "engines": {
+    "node": ">=14"
+  }
 }
