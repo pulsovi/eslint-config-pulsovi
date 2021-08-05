@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-browser-jquery",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "my eslint shared config for browser projects than use jQuery library",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
@@ -9,8 +9,8 @@
   "peerDependencies": {
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
-    "eslint-config-pulsovi": "*",
-    "eslint-config-pulsovi-browser": "*",
+    "eslint-config-pulsovi": "workspace:eslint-config-pulsovi/packages/core",
+    "eslint-config-pulsovi-browser": "workspace:eslint-config-pulsovi/packages/browser",
     "eslint-plugin-import": "*"
   }
 }

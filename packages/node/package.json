@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-node",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "my eslint shared config for native node projects",
   "main": "index.json",
   "files": [
@@ -10,8 +10,7 @@
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi": "workspace:eslint-config-pulsovi/packages/core",
-    "eslint-plugin-node": "^11.1.0"
+    "eslint-plugin-node": "workspace:eslint-config-pulsovi/packages/node"
   },
   "peerDependencies": {
     "eslint": "*"

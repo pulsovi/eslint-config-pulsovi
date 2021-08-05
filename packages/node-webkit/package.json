@@ -7,13 +7,13 @@
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi": "*"
+    "eslint-config-pulsovi": "workspace:eslint-config-pulsovi/packages/core"
   },
   "peerDependencies": {
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
-    "eslint-config-pulsovi-browser": "*",
-    "eslint-config-pulsovi-node": "*",
+    "eslint-config-pulsovi-browser": "workspace:eslint-config-pulsovi/packages/browser",
+    "eslint-config-pulsovi-node": "workspace:eslint-config-pulsovi/packages/node",
     "eslint-plugin-import": "*",
     "eslint-plugin-node": "*"
   }

@@ -20,11 +20,11 @@
     "eslint-plugin-pulsovi": "workspace:eslint-config-pulsovi/packages/plugin"
   },
   "peerDependencies": {
-    "eslint-config-pulsovi-browser": "*",
-    "eslint-config-pulsovi-browser-jquery": "*",
-    "eslint-config-pulsovi-node": "*",
-    "eslint-config-pulsovi-node-webkit": "*",
-    "eslint-config-pulsovi-react": "*"
+    "eslint-config-pulsovi-browser": "workspace:eslint-config-pulsovi/packages/browser",
+    "eslint-config-pulsovi-browser-jquery": "workspace:eslint-config-pulsovi/packages/browser",
+    "eslint-config-pulsovi-node": "workspace:eslint-config-pulsovi/packages/node",
+    "eslint-config-pulsovi-node-webkit": "workspace:eslint-config-pulsovi/packages/node-webkit",
+    "eslint-config-pulsovi-react": "workspace:eslint-config-pulsovi/packages/react"
   },
   "peerDependenciesMeta": {
     "eslint-config-pulsovi-browser": {
