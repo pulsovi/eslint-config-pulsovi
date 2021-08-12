@@ -9,8 +9,8 @@
   "peerDependencies": {
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
-    "eslint-config-pulsovi": "workspace:eslint-config-pulsovi/packages/core",
-    "eslint-config-pulsovi-browser": "workspace:eslint-config-pulsovi/packages/browser",
+    "eslint-config-pulsovi": "*",
+    "eslint-config-pulsovi-browser": "*",
     "eslint-plugin-import": "*"
   }
 }
