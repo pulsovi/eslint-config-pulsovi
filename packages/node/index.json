@@ -1,7 +1,7 @@
 {
   "extends": [
-    "pulsovi",
-    "plugin:node/recommended"
+    "plugin:node/recommended",
+    "pulsovi"
   ],
   "ignorePatterns": ["node_modules"],
   "rules": {
