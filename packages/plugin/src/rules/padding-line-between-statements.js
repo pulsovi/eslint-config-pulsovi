@@ -41,6 +41,37 @@ function newKeywordTester(keyword) {
 }
 
 /**
+ * Get the previous node
+ * @param {ASTNode} node The next node
+ * @returns {ASTNode} The previous node, or null if node is the first node of its parent
+ */
+function getPrevNode(node) {
+    if (!node.parent) {
+        return null;
+    }
+    const index = node.parent.body.indexOf(node);
+
+    if (index < 1) {
+        return null;
+    }
+    return node.parent.body[index - 1];
+}
+
+/**
+ * Creates tester which check if a node starts with specific keyword and not follow another node of the same type.
+ * @param {string} keyword The keyword to test.
+ * @returns {Object} the created tester.
+ * @private
+ */
+function newSingleKeywordTester(keyword) {
+    return {
+        test: (node, sourceCode) => sourceCode.getFirstToken(node).value === keyword &&
+            (!getPrevNode(node) ||
+            sourceCode.getFirstToken(getPrevNode(node)).value !== keyword)
+    };
+}
+
+/**
  * Creates tester which check if a node starts with specific keyword and spans a single line.
  * @param {string} keyword The keyword to test.
  * @returns {Object} the created tester.
@@ -405,6 +436,9 @@ const StatementTypes = {
     "singleline-const": newSinglelineKeywordTester("const"),
     "singleline-let": newSinglelineKeywordTester("let"),
     "singleline-var": newSinglelineKeywordTester("var"),
+    "single-const": newSingleKeywordTester("const"),
+    "single-let": newSingleKeywordTester("let"),
+    "single-var": newSingleKeywordTester("var"),
 
     block: newNodeTypeTester("BlockStatement"),
     empty: newNodeTypeTester("EmptyStatement"),
