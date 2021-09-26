@@ -102,7 +102,7 @@
     "max-classes-per-file": "error",
     "max-depth": "error",
     "max-len": ["error", {
-      "code": 101,
+      "code": 102,
       "tabWidth": 2,
       "ignoreComments": false,
       "ignoreUrls": true,
