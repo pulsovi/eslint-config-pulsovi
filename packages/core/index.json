@@ -110,7 +110,7 @@
       "ignoreTemplateLiterals": true,
       "ignoreRegExpLiterals": true
     }],
-    "max-lines": "error",
+    "max-lines": "warn",
     "max-lines-per-function": "warn",
     "max-nested-callbacks": "error",
     "max-params": ["error", 4],
