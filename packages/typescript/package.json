@@ -1,0 +1,21 @@
+{
+  "name": "eslint-config-pulsovi-typescript",
+  "version": "0.1.0",
+  "description": "my eslint shared config for typescript projects",
+  "main": "index.json",
+  "files": [
+    "index.json"
+  ],
+  "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
+  "author": "David GABISON <david.gabison@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@typescript-eslint/parser": "^4.29.3",
+    "eslint-config-pulsovi-node": "workspace:eslint-config-pulsovi/packages/node",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.24.2"
+  },
+  "peerDependencies": {
+    "eslint": "*"
+  }
+}
