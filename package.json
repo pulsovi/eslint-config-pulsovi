@@ -7,7 +7,7 @@
   "devDependencies": {
     "@qiwi/multi-semantic-release": "patch:@qiwi/multi-semantic-release@^3.15.0#.yarn-patches/multi-semantic-release/posix.patch",
     "eslint": "^7.31.0",
-    "eslint-config-pulsovi-node": "workspace:eslint-config-pulsovi/packages/node"
+    "eslint-config-pulsovi-node": "workspace:packages/node"
   },
   "engines": {
     "node": ">=14"

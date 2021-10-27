@@ -11,7 +11,7 @@
     "@typescript-eslint/parser": "*",
     "babel-eslint": "*",
     "eslint": "*",
-    "eslint-config-pulsovi-browser": "workspace:eslint-config-pulsovi/packages/browser",
+    "eslint-config-pulsovi-browser": "workspace:packages/browser",
     "eslint-config-react-app": "*",
     "eslint-plugin-flowtype": "*",
     "eslint-plugin-import": "*",

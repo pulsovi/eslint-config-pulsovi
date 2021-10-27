@@ -10,7 +10,7 @@
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi-node": "workspace:eslint-config-pulsovi/packages/node",
+    "eslint-config-pulsovi-node": "workspace:packages/node",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.24.2"
   },

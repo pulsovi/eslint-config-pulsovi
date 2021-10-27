@@ -7,7 +7,7 @@
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi": "workspace:eslint-config-pulsovi/packages/core"
+    "eslint-config-pulsovi": "workspace:packages/core"
   },
   "peerDependencies": {
     "eslint": "*",
