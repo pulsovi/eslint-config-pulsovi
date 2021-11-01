@@ -31,11 +31,16 @@
     }],
     "@typescript-eslint/indent": ["warn", 2],
     "@typescript-eslint/no-magic-numbers": ["off" ,{ "ignore": [-2, -1, 0, 1, 2, 1000] }],
-    "@typescript-eslint/no-use-before-define": ["error", "nofunc"],
     "@typescript-eslint/no-type-alias": ["warn", {
       "allowAliases": "always",
       "allowLiterals": "in-unions-and-intersections"
     }],
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "args": "after-used",
+      "argsIgnorePattern": "^_",
+      "ignoreRestSiblings": true
+    }],
+    "@typescript-eslint/no-use-before-define": ["error", "nofunc"],
     "@typescript-eslint/object-curly-spacing": ["warn", "always", {
       "arraysInObjects": true,
       "objectsInObjects": false
