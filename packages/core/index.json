@@ -62,7 +62,7 @@
     "guard-for-in": "error",
     "handle-callback-err": "error",
     "id-blacklist": "error",
-    "id-length": ["error", { "exceptions": ["i", "x", "y"] }],
+    "id-length": ["error", { "exceptions": ["_", "i", "x", "y"] }],
     "id-match": "error",
     "implicit-arrow-linebreak": "warn",
     "import/extensions": ["error", "never"],
