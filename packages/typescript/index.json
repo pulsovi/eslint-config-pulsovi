@@ -50,7 +50,9 @@
     "@typescript-eslint/return-await": ["warn", "always"],
     "@typescript-eslint/strict-boolean-expressions": "off",
     "max-params": ["warn", 5],
-    "node/no-missing-import": ["error", { "tryExtensions": [".ts", ".d.ts", ".json"]}],
+    "node/no-missing-import": ["error", {
+      "tryExtensions": [".d.ts", ".js", ".json", ".node", ".ts"]
+    }],
     "node/no-unsupported-features/es-syntax": "off",
     "valid-jsdoc": "off"
   }
