@@ -30,6 +30,9 @@
       "objects": "always-multiline"
     }],
     "@typescript-eslint/indent": ["warn", 2],
+    "@typescript-eslint/lines-between-class-members": ["error", "always", {
+      "exceptAfterSingleLine": true
+    }],
     "@typescript-eslint/no-magic-numbers": ["off" ,{ "ignore": [-2, -1, 0, 1, 2, 1000] }],
     "@typescript-eslint/no-type-alias": ["warn", {
       "allowAliases": "always",
