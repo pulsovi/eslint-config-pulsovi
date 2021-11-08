@@ -251,7 +251,7 @@
         "warn",
         { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*"},
         { "blankLine": "any", "prev": ["single-const", "single-let", "single-var"], "next": "*"},
-        { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var", "return", "implicit-return"]}
+        { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var", "return", "implicit-return", "throw"]}
     ],
     "quote-props": ["error", "as-needed", {
       "keywords": true,
