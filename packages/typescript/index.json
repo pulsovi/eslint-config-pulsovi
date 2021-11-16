@@ -29,7 +29,7 @@
       "imports": "always-multiline",
       "objects": "always-multiline"
     }],
-    "@typescript-eslint/indent": ["warn", 2],
+    "@typescript-eslint/indent": ["warn", 2, { "SwitchCase": 0 }],
     "@typescript-eslint/lines-between-class-members": ["error", "always", {
       "exceptAfterSingleLine": true
     }],

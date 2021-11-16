@@ -84,8 +84,8 @@
         ],
         "newlines-between": "always"
     }],
-    "indent": ["warn", 2],
-    "indent-legacy": ["warn", 2],
+    "indent": ["warn", 2, { "SwitchCase": 0 }],
+    "indent-legacy": ["warn", 2, { "SwitchCase": 0 }],
     "init-declarations": "error",
     "jsx-quotes": "error",
     "key-spacing": "error",
