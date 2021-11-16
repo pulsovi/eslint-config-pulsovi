@@ -90,7 +90,7 @@
     "jsx-quotes": "error",
     "key-spacing": "error",
     "keyword-spacing": ["error", { "after": true, "before": true }],
-    "line-comment-position": "error",
+    "line-comment-position": ["error", { "ignorePattern": "^.{0,20}$" }],
     "linebreak-style": ["error", "unix"],
     "lines-around-comment": ["warn", {
         "allowBlockStart": true,
@@ -151,7 +151,7 @@
     "no-implicit-globals": "error",
     "no-implied-eval": "error",
     "no-import-assign": "error",
-    "no-inline-comments": "error",
+    "no-inline-comments": ["error", { "ignorePattern": "^.{0,20}$" }],
     "no-inner-declarations": ["error", "functions"],
     "no-invalid-this": "error",
     "no-iterator": "error",
