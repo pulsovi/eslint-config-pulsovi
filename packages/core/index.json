@@ -84,6 +84,7 @@
         ],
         "newlines-between": "always"
     }],
+    "import/prefer-default-export": "warn",
     "indent": ["warn", 2, { "SwitchCase": 0 }],
     "indent-legacy": ["warn", 2, { "SwitchCase": 0 }],
     "init-declarations": "error",
