@@ -267,7 +267,7 @@
     "semi-spacing": ["warn", { "after": true, "before": false }],
     "semi-style": ["warn", "last"],
     "sort-imports": "off",
-    "sort-keys": ["warn", "asc"],
+    "sort-keys": ["warn", "asc", { "natural": true }],
     "sort-vars": "error",
     "space-before-blocks": "error",
     "space-before-function-paren": ["error", "always"],
