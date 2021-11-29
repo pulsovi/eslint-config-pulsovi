@@ -13,6 +13,7 @@
 
 const log = require("debug")("eslint-plugin-pulsovi:padding-line-between-statements");
 const astUtils = require("eslint/lib/rules/utils/ast-utils");
+// log.enabled = true;
 
 /*
  * ------------------------------------------------------------------------------
@@ -65,9 +66,24 @@ function getPrevNode(node) {
  */
 function newSingleKeywordTester(keyword) {
     return {
-        test: (node, sourceCode) => sourceCode.getFirstToken(node).value === keyword &&
-            (!getPrevNode(node) ||
-            sourceCode.getFirstToken(getPrevNode(node)).value !== keyword)
+        test: (node, sourceCode) => {
+            if (sourceCode.getFirstToken(node).value !== keyword) {
+                return false;
+            }
+            const previousNode = getPrevNode(node);
+
+            if (!previousNode) {
+                return true;
+            }
+            if (sourceCode.getFirstToken(previousNode).value !== keyword) {
+                return true;
+            }
+            const textBetween = sourceCode.getText({ range: [previousNode.range[1], node.range[0]] });
+
+            if ((/(\n|\r|\r\n){2}/um).test(textBetween)) {
+                return true;
+            }
+        }
     };
 }
 
@@ -321,6 +337,21 @@ function verifyForAlways(context, prevNode, nextNode, paddingLines) {
         "next:",
         // eslint-disable-next-line no-use-before-define
         getNodeTypes(nextNode, context)
+    );
+    const sourceCode = context.getSourceCode();
+    const zeroNode = sourceCode.getTokenBefore(prevNode);
+
+    log(
+        "\n----------------previous node-------------\n",
+        sourceCode.getText(zeroNode),
+        "\n----------------text between-----------\n'",
+        sourceCode.getText({ range: [zeroNode.range[1], prevNode.range[0]] }),
+        "'\n----------------first node------------\n",
+        sourceCode.getText(prevNode),
+        "\n----------------text between-----------\n'",
+        sourceCode.getText({ range: [prevNode.range[1], nextNode.range[0]] }),
+        "'\n----------------second node------------\n",
+        sourceCode.getText(nextNode)
     );
     context.report({
         node: nextNode,
