@@ -7,15 +7,17 @@
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "*",
-    "@typescript-eslint/parser": "*",
+    "eslint-config-pulsovi-browser": "portal:../browser"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.0.0",
+    "@typescript-eslint/parser": "^4.0.0",
     "babel-eslint": "*",
-    "eslint": "*",
-    "eslint-config-pulsovi-browser": "workspace:packages/browser",
+    "eslint": "^7.0.0",
     "eslint-config-react-app": "*",
-    "eslint-plugin-flowtype": "*",
+    "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "*",
-    "eslint-plugin-jest": "*",
+    "eslint-plugin-jest": "^24.0.0",
     "eslint-plugin-jsx-a11y": "*",
     "eslint-plugin-react": "*",
     "eslint-plugin-react-hooks": "*",
