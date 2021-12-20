@@ -33,6 +33,19 @@
     "@typescript-eslint/lines-between-class-members": ["error", "always", {
       "exceptAfterSingleLine": true
     }],
+    "@typescript-eslint/naming-convention": ["warn", {
+      "selector": "default",
+      "format": ["camelCase"],
+      "leadingUnderscore": "allow",
+      "trailingUnderscore": "allow"
+    },{
+      "selector": "typeLike",
+      "format": ["PascalCase"]
+    },{
+      "selector": "classProperty",
+      "modifiers": ["static", "readonly", "public"],
+      "format": ["UPPER_CASE"]
+    }],
     "@typescript-eslint/no-extra-parens": [
       "error",
       "all",
