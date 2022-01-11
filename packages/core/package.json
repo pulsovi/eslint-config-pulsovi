@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi",
-  "version": "3.7.5",
+  "version": "3.8.5",
   "description": "my eslint shared config",
   "main": "index.json",
   "author": "David GABISON <david.gabison@outlook.com>",

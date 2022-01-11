@@ -256,7 +256,7 @@
     ],
     "quote-props": ["error", "as-needed", {
       "keywords": true,
-      "unnecessary": false,
+      "unnecessary": true,
       "numbers": true
     }],
     "radix": "error",
