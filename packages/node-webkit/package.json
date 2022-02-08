@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-node-webkit",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "my eslint shared config for nw projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
@@ -8,6 +8,6 @@
   "license": "MIT",
   "dependencies": {
     "eslint-config-pulsovi-browser": "0.0.4",
-    "eslint-config-pulsovi-node": "0.0.7"
+    "eslint-config-pulsovi-node": "0.1.0"
   }
 }
