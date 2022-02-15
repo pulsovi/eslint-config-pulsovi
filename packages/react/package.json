@@ -1,13 +1,13 @@
 {
   "name": "eslint-config-pulsovi-react",
-  "version": "2.5.9",
+  "version": "2.5.10",
   "description": "my eslint shared config for react projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi-browser": "portal:../browser"
+    "eslint-config-pulsovi-browser": "0.0.5"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.0.0",
