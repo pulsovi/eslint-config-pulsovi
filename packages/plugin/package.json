@@ -1,11 +1,11 @@
 {
   "name": "eslint-plugin-pulsovi",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "src/index.js",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "dependencies": {
     "debug": "^4.3.1",
-    "eslint": "^7.29.0"
+    "eslint": "^7.29.0 || ^8.0.0"
   },
   "devDependencies": {
     "eslint-config-eslint": "^7.0.0",
