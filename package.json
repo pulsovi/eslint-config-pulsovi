@@ -4,7 +4,11 @@
   "workspaces": [
     "packages/*"
   ],
+  "resolutions": {
+    "@semantic-release/npm": "patch:@semantic-release/npm@7.1.3#.yarn-patches/@semantic-release/npm/otp.patch"
+  },
   "dependencies": {
+    "@qiwi/multi-semantic-release": "patch:@qiwi/multi-semantic-release@^3.15.0#.yarn-patches/multi-semantic-release/posix.patch",
     "eslint": "^8.0.0",
     "eslint-pulsovi-interdeps": "workspace:^",
     "husky": "^6.0.0",

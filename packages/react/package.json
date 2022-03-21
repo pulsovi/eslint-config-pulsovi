@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-react",
-  "version": "2.5.17",
+  "version": "2.5.18",
   "description": "my eslint shared config for react projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
@@ -9,20 +9,9 @@
   "dependencies": {
     "@rushstack/eslint-patch": "^1.1.1",
     "babel-preset-react-app": "^10.0.1",
-    "eslint-config-pulsovi-browser": "0.0.11"
+    "eslint-config-pulsovi-browser": "0.0.7"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.0.0",
-    "@typescript-eslint/parser": "^4.0.0",
-    "babel-eslint": "^10.0.0",
-    "eslint": "^7.0.0",
-    "eslint-config-react-app": "^6.0.0",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jest": "^24.0.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^4.0.8",
-    "eslint-plugin-testing-library": "^3.9.0"
+    "eslint": "^7.0.0 || ^8.0.0"
   }
 }

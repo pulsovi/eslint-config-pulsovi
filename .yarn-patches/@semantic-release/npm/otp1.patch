@@ -1,0 +1,89 @@
+diff --git a/lib/publish.js b/lib/publish.js
+index c79d5652ac025efa6f60beadc8c36f52f5876c28..6677a6d3c82c24ce024c2dcb22e2a28af63a08f8 100644
+--- a/lib/publish.js
++++ b/lib/publish.js
+@@ -3,7 +3,9 @@ const execa = require('execa');
+ const getRegistry = require('./get-registry');
+ const getChannel = require('./get-channel');
+ const getReleaseInfo = require('./get-release-info');
++const prompts = require('prompts');
+ 
++let sync = Promise.resolve();
+ module.exports = async (npmrc, {npmPublish, pkgRoot}, pkg, context) => {
+   const {
+     cwd,
+@@ -20,15 +22,9 @@ module.exports = async (npmrc, {npmPublish, pkgRoot}, pkg, context) => {
+     const distTag = getChannel(channel);
+ 
+     logger.log(`Publishing version ${version} to npm registry on dist-tag ${distTag}`);
+-    const result = execa(
+-      'npm',
+-      ['publish', basePath, '--userconfig', npmrc, '--tag', distTag, '--registry', registry],
+-      {cwd, env}
+-    );
+-    result.stdout.pipe(stdout, {end: false});
+-    result.stderr.pipe(stderr, {end: false});
+-    await result;
+-
++    await sync;
++    sync = sync.then(() => publish({ basePath, cwd, distTag, env, npmrc, pkg, registry, stderr, stdout, version }));
++    await sync;
+     logger.log(`Published ${pkg.name}@${version} to dist-tag @${distTag} on ${registry}`);
+ 
+     return getReleaseInfo(pkg, context, distTag, registry);
+@@ -42,3 +38,43 @@ module.exports = async (npmrc, {npmPublish, pkgRoot}, pkg, context) => {
+ 
+   return false;
+ };
++
++async function publish({ allowed, basePath, cwd, distTag, env, npmrc, otp, pkg, registry, stderr, stdout, version }) {
++  if (allowed)
++    prompts.inject([true]);
++  const options = await prompts([{
++    initial: true,
++    name: 'allow',
++    message: `Publish ${pkg.name}@${version} to npm registry ?`,
++    type: 'confirm',
++  }, {
++    name: 'useOTP',
++    message: 'Use OTP ?',
++    type: (prev, values) => values.allow ? 'confirm' : null,
++  }, {
++    name: 'OTP',
++    message: 'Type the OTP code',
++    type: (prev, values) => {
++      console.log({prev, values});
++      return values.useOTP ? 'text' : null;
++    },
++    validate: value => {
++      console.log('otp validation', { value }, /^\d{6}$/u.test(value));
++      return /^\d{6}$/u.test(value);
++    },
++  }]);
++  console.log('@semantic-release/npm:@publish', { allowed, distTag, otp, version, options });
++  if (!options.allow) throw new Error(`Publishing ${pkg.name}@${version} to npm registry aborted.`)
++  const result = execa(
++    'npm',
++    ['publish', basePath, '--userconfig', npmrc, '--tag', distTag, '--registry', registry]
++      .concat(options.OTP ? `--otp=${options.OTP}` : []),
++    {cwd, env}
++  );
++  result.stdout.pipe(stdout, {end: false});
++  result.stderr.pipe(stderr, {end: false});
++  return await result.catch(error => {
++    console.log('npm publish error', error);
++    throw error;
++  });
++}
+diff --git a/package.json b/package.json
+index e503ac667cf319e797eef8c56822d60be0c1c9fa..27a201f77055b0ce23a8311aa0633b117ba2c4d3 100644
+--- a/package.json
++++ b/package.json
+@@ -25,6 +25,7 @@
+     "nerf-dart": "^1.0.0",
+     "normalize-url": "^6.0.0",
+     "npm": "^7.0.0",
++    "prompts": "^2.4.1",
+     "rc": "^1.2.8",
+     "read-pkg": "^5.0.0",
+     "registry-auth-token": "^4.0.0",

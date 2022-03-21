@@ -1,0 +1,70 @@
+diff --git a/lib/publish.js b/lib/publish.js
+index c79d5652ac025efa6f60beadc8c36f52f5876c28..15469a110c1834d016bd5695e38d2a31b7f657de 100644
+--- a/lib/publish.js
++++ b/lib/publish.js
+@@ -3,7 +3,9 @@ const execa = require('execa');
+ const getRegistry = require('./get-registry');
+ const getChannel = require('./get-channel');
+ const getReleaseInfo = require('./get-release-info');
++const prompts = require('prompts');
+ 
++let sync = Promise.resolve();
+ module.exports = async (npmrc, {npmPublish, pkgRoot}, pkg, context) => {
+   const {
+     cwd,
+@@ -20,15 +22,12 @@ module.exports = async (npmrc, {npmPublish, pkgRoot}, pkg, context) => {
+     const distTag = getChannel(channel);
+ 
+     logger.log(`Publishing version ${version} to npm registry on dist-tag ${distTag}`);
+-    const result = execa(
+-      'npm',
+-      ['publish', basePath, '--userconfig', npmrc, '--tag', distTag, '--registry', registry],
+-      {cwd, env}
+-    );
+-    result.stdout.pipe(stdout, {end: false});
+-    result.stderr.pipe(stderr, {end: false});
+-    await result;
+-
++    await sync;
++    sync = sync.then(() => publish({
++      args: ['publish', basePath, '--userconfig', npmrc, '--tag', distTag, '--registry', registry],
++      cwd, env, pkg, stderr, stdout, version,
++    }));
++    await sync;
+     logger.log(`Published ${pkg.name}@${version} to dist-tag @${distTag} on ${registry}`);
+ 
+     return getReleaseInfo(pkg, context, distTag, registry);
+@@ -42,3 +41,33 @@ module.exports = async (npmrc, {npmPublish, pkgRoot}, pkg, context) => {
+ 
+   return false;
+ };
++
++async function publish({ allowed, args, cwd, env, otp, pkg, stderr, stdout, version }) {
++  const { allow } = allowed ? { allow: true } : await prompts({
++    initial: true,
++    name: 'allow',
++    message: `Publish ${pkg.name}@${version} to npm registry ?`,
++    type: 'confirm',
++  });
++
++  const { OTP } = otp ? await prompts({
++    name: 'OTP',
++    message: 'Type the OTP code',
++    type: 'text',
++    validate: value => {
++      console.log('otp validation', { value }, /^\d{6}$/u.test(value));
++      return /^\d{6}$/u.test(value);
++    },
++  }) : null;
++
++  if (!options.allow) throw new Error(`Publishing ${pkg.name}@${version} to npm registry aborted.`)
++
++  const result = execa('npm', args.concat(OTP ? `--otp=${OTP}` : []), {cwd, env});
++  result.stdout.pipe(stdout, {end: false});
++  result.stderr.pipe(stderr, {end: false});
++  return await result.catch(error => {
++    if (error.code === 'EOTP')
++      return publish({ allowed: allow, args, cwd, env, otp: true, pkg, stderr, stdout, version })
++    throw error;
++  });
++}
