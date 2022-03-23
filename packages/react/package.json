@@ -1,26 +1,26 @@
 {
   "name": "eslint-config-pulsovi-react",
-  "version": "2.5.11",
+  "version": "2.5.12",
   "description": "my eslint shared config for react projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi-browser": "0.0.6"
+    "eslint-config-pulsovi-browser": "0.0.7"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^4.0.0",
-    "babel-eslint": "*",
+    "babel-eslint": "^10.0.0",
     "eslint": "^7.0.0",
-    "eslint-config-react-app": "*",
+    "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-import": "*",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jest": "^24.0.0",
-    "eslint-plugin-jsx-a11y": "*",
-    "eslint-plugin-react": "*",
-    "eslint-plugin-react-hooks": "*",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
     "eslint-plugin-testing-library": "^3.9.0"
   }
 }

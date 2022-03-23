@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-typescript",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "my eslint shared config for typescript projects",
   "main": "index.json",
   "files": [
@@ -12,14 +12,14 @@
   "dependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
-    "eslint-config-pulsovi-node": "0.1.2",
+    "eslint-config-pulsovi-node": "0.1.3",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "^2.24.2",
     "typescript": "^4.5.5"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": "*",
-    "eslint": "*"
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^7.29.0 || ^8.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.11.0"

@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi",
-  "version": "3.8.8",
+  "version": "3.8.9",
   "description": "my eslint shared config",
   "main": "index.json",
   "author": "David GABISON <david.gabison@outlook.com>",
@@ -20,11 +20,11 @@
     "eslint-plugin-pulsovi": "0.1.2"
   },
   "peerDependencies": {
-    "eslint-config-pulsovi-browser": "*",
-    "eslint-config-pulsovi-browser-jquery": "*",
-    "eslint-config-pulsovi-node": "*",
-    "eslint-config-pulsovi-node-webkit": "*",
-    "eslint-config-pulsovi-react": "*"
+    "eslint-config-pulsovi-browser": "0.0.7",
+    "eslint-config-pulsovi-browser-jquery": "0.0.8",
+    "eslint-config-pulsovi-node": "0.1.3",
+    "eslint-config-pulsovi-node-webkit": "0.0.8",
+    "eslint-config-pulsovi-react": "2.5.12"
   },
   "peerDependenciesMeta": {
     "eslint-config-pulsovi-browser": {
