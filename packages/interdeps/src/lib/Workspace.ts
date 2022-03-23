@@ -4,6 +4,7 @@ import fs from 'fs-extra';
 import simpleGit from 'simple-git';
 import type { SimpleGit } from 'simple-git';
 
+import { excludePackages } from './config';
 import { getLogger } from './debug';
 import Package from './Package';
 
@@ -78,6 +79,7 @@ export default class Workspace {
     const dirents = await fs.readdir(this.workspaceFolder, { withFileTypes: true });
     const rawPackages = await Promise.all(dirents.map(async dirent => {
       if (!dirent.isDirectory()) return null;
+      if (excludePackages.includes(dirent.name)) return null;
       const packageFile = path.resolve(this.workspaceFolder, dirent.name, 'package.json');
       return await this.getPackageFromPackageFile(packageFile);
     }));
