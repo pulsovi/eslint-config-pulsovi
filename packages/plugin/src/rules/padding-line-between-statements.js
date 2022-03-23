@@ -12,7 +12,7 @@
  */
 
 const log = require("debug")("eslint-plugin-pulsovi:padding-line-between-statements");
-const astUtils = require("eslint/lib/rules/utils/ast-utils");
+const astUtils = require("./utils/ast-utils");
 // log.enabled = true;
 
 /*

@@ -1,12 +1,12 @@
 {
   "name": "eslint-config-pulsovi-browser",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "my eslint shared config for front-end projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi": "3.8.10"
+    "eslint-config-pulsovi": "3.8.11"
   }
 }

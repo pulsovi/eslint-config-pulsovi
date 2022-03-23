@@ -1,12 +1,12 @@
 {
   "name": "eslint-config-pulsovi-browser-jquery",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "my eslint shared config for browser projects than use jQuery library",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi-browser": "0.0.8"
+    "eslint-config-pulsovi-browser": "0.0.9"
   }
 }
