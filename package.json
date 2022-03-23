@@ -4,10 +4,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "resolutions": {
-    "eslint-config-pulsovi-browser": "workspace:^",
-    "eslint-config-pulsovi": "workspace:^"
-  },
   "dependencies": {
     "eslint": "^8.0.0",
     "eslint-pulsovi-interdeps": "workspace:^",
