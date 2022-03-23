@@ -1,12 +1,14 @@
 {
   "name": "eslint-config-pulsovi-react",
-  "version": "2.5.15",
+  "version": "2.5.16",
   "description": "my eslint shared config for react projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
+    "@rushstack/eslint-patch": "^1.1.1",
+    "babel-preset-react-app": "^10.0.1",
     "eslint-config-pulsovi-browser": "0.0.10"
   },
   "peerDependencies": {

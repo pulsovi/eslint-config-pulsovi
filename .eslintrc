@@ -1,2 +1,5 @@
 root: true
 extends: pulsovi-node
+rules:
+  sort-keys: off
+  no-magic-numbers: off

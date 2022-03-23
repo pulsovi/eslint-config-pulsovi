@@ -25,7 +25,6 @@ module.exports = {
       node: { extensions: ['.js', '.jsx'] },
     },
   },
-  // eslint-disable-next-line sort-keys
   rules: {
     'max-lines-per-function': 'off',
     'react/no-typos': 'error',
