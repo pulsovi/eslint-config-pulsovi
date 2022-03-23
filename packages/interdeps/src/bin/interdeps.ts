@@ -23,7 +23,7 @@ async function main (): Promise<void> {
   const workspace = new Workspace(workspaceRoot, git);
   const messages = new Messager('Impossible de valider le commit à cause des éléments suivants:');
 
-  messages.push(await processChangedFiles(workspace, git));
+  messages.push(await processChangedFiles(workspace));
   messages.push(await processDeps(workspace));
 
   if (messages.length) {

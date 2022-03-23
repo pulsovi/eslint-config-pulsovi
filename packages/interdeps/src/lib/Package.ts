@@ -31,12 +31,12 @@ export default class Package {
     return this.packageFile.slice(this.workspace.getWorkspaceFolder().length).split(path.sep)[1];
   }
 
-  public async getOldValue (prop: string): Promise<unknown | undefined> {
+  public async getOldValue (prop: string): Promise<unknown> {
     const js = await this.getOldJS();
     return get(js, prop);
   }
 
-  public async getNewValue (prop: string): Promise<unknown | undefined> {
+  public async getNewValue (prop: string): Promise<unknown> {
     const js = await this.getNewJS();
     return get(js, prop);
   }
