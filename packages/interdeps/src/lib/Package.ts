@@ -4,6 +4,8 @@ import deepExtend from 'deep-extend';
 import fs from 'fs-extra';
 import { get, set } from 'lodash';
 
+import Semver from './Semver';
+import type { SemverBlocName } from './Semver';
 import type Workspace from './Workspace';
 
 export default class Package {
@@ -31,14 +33,31 @@ export default class Package {
     return this.packageFile.slice(this.workspace.getWorkspaceFolder().length).split(path.sep)[1];
   }
 
-  public async getOldValue (prop: string): Promise<unknown> {
+  public async getOldValue (prop: string[] | string): Promise<unknown> {
     const js = await this.getOldJS();
-    return get(js, prop);
+    return get(js, prop) as unknown;
   }
 
-  public async getNewValue (prop: string): Promise<unknown> {
+  public async getOldVersion (): Promise<Semver> {
+    return new Semver(await this.getOldValue('version') as string);
+  }
+
+  public async getNewValue (prop: string[] | string): Promise<unknown> {
     const js = await this.getNewJS();
-    return get(js, prop);
+    return get(js, prop) as unknown;
+  }
+
+  public async getNewVersion (): Promise<Semver> {
+    return new Semver(await this.getNewValue('version') as string);
+  }
+
+  public async versionIncrease (): Promise<SemverBlocName | false> {
+    const oldVersion = await this.getOldValue('version') as string;
+    const newVersion = await this.getNewValue('version') as string;
+    const semver = new Semver(newVersion);
+
+    if (!semver.isGreatherThan(oldVersion)) return false;
+    return semver.updateType(oldVersion) ?? false;
   }
 
   public set (prop: string[], value: unknown): void {

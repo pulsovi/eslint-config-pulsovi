@@ -5,8 +5,8 @@ import simpleGit from 'simple-git';
 import type { SimpleGit } from 'simple-git';
 
 import { excludePackages } from './config';
-import { getLogger } from './debug';
 import Package from './Package';
+import { getLogger } from './util';
 
 const log = getLogger(path.basename(__filename, path.extname(__filename)));
 

@@ -2,7 +2,7 @@
   "name": "eslint-pulsovi-interdeps",
   "version": "0.2.0",
   "scripts": {
-    "build": "yarn babel src --out-dir . --extensions \".ts\"",
+    "build": "rm -rf ./bin && rm -rf ./lib && yarn babel src --out-dir . --extensions \".ts\"",
     "lint": "yarn eslint .",
     "prepack": "yarn build"
   },
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "bluebird": "^3.7.2",
+    "commander": "^9.1.0",
     "debug": "^4.3.3",
     "deep-diff": "^1.0.2",
     "deep-extend": "^0.6.0",

@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-const rootLogger = debug('update-version');
+const rootLogger = debug('interdeps');
 const subLoggers: Record<string, debug.Debugger> = {};
 
 export function getLogger (subName: string): debug.Debugger {

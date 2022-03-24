@@ -14,6 +14,11 @@ export default class Messager {
     return this.stack.length;
   }
 
+  public concat (messages: (Messager | string)[]): this {
+    messages.forEach(message => { this.push(message); });
+    return this;
+  }
+
   public push (text: Messager | string | null): this {
     if (typeof text === 'string') this.stack.push(text);
     if (text instanceof Messager) this.push(text.toString());
