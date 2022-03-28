@@ -13,6 +13,7 @@
 
 const log = require("debug")("eslint-plugin-pulsovi:padding-line-between-statements");
 const astUtils = require("./utils/ast-utils");
+
 // log.enabled = true;
 
 /*
@@ -80,9 +81,7 @@ function newSingleKeywordTester(keyword) {
             }
             const textBetween = sourceCode.getText({ range: [previousNode.range[1], node.range[0]] });
 
-            if ((/(\n|\r|\r\n){2}/um).test(textBetween)) {
-                return true;
-            }
+            return (/(\n|\r|\r\n){2}/um).test(textBetween);
         }
     };
 }
@@ -357,7 +356,6 @@ function verifyForAlways(context, prevNode, nextNode, paddingLines) {
         node: nextNode,
         messageId: "expectedBlankLine",
         fix(fixer) {
-            const sourceCode = context.getSourceCode();
             let prevToken = getActualLastToken(sourceCode, prevNode);
             const nextToken = sourceCode.getFirstTokenBetween(
                 prevToken,
