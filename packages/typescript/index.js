@@ -54,13 +54,13 @@ module.exports = {
       'all',
       {
         conditionalAssign: false,
-        returnAssign: false,
-        nestedBinaryExpressions: false,
-        ignoreJSX: 'multi-line',
         enforceForArrowConditionals: false,
-        enforceForSequenceExpressions: false,
-        enforceForNewInMemberExpressions: false,
         enforceForFunctionPrototypeMethods: false,
+        enforceForNewInMemberExpressions: false,
+        enforceForSequenceExpressions: false,
+        ignoreJSX: 'multi-line',
+        nestedBinaryExpressions: false,
+        returnAssign: false,
       },
     ],
     '@typescript-eslint/no-magic-numbers': ['off', { ignore: [-2, -1, 0, 1, 2, 1000] }],
@@ -71,8 +71,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error', {
       args: 'after-used',
       argsIgnorePattern: '^_',
-      varsIgnorePattern: '^_',
       ignoreRestSiblings: true,
+      varsIgnorePattern: '^_',
     }],
     '@typescript-eslint/no-use-before-define': ['error', 'nofunc'],
     '@typescript-eslint/object-curly-spacing': ['warn', 'always', {
