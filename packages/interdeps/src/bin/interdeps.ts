@@ -12,5 +12,6 @@ program
   .then(() => {
     log('main ends successfull');
   }, reason => {
-    log('main fail with', reason);
+    console.info('main fail with', reason);
+    process.exit(1);
   });

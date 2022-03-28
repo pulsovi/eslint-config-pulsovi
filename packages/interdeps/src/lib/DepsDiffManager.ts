@@ -2,7 +2,7 @@ import Messager from './Messager';
 import type Package from './Package';
 import Semver from './Semver';
 import type { SemverBlocName } from './Semver';
-import { getLogger, todo } from './util';
+import { getLogger } from './util';
 import type Workspace from './Workspace';
 
 type DepsBlocName = 'dependencies' | 'devDependencies' | 'peerDependencies';
@@ -23,7 +23,88 @@ export default class DepsDiffManager {
   }
 
   public async fixAllPackages (): Promise<void> {
-    await Promise.resolve(todo(this));
+    log('fixAllPackages');
+    const packages = await this.workspace.getAllPackages();
+
+    await Promise.all(packages.map(async pkg => { await this.fixPackage(pkg); }));
+
+    await Promise.all(packages.map(async pkg => await Promise.all([
+      pkg.index.save(),
+      pkg.work.save(),
+    ])));
+  }
+
+  public async fixPackage (pkg: Package): Promise<void> {
+    log('fixPackage', pkg.getName());
+    const headVersion = await pkg.head.getVersion();
+    const isWorkSync = await pkg.work.get('version') === await pkg.index.get('version');
+    const canUpdateWork = isWorkSync;
+    let actualIncreaseType = headVersion.increaseType(await pkg.index.getVersion());
+
+    pkg.index.on('need-update', (increaseRequired: SemverBlocName, cause: string) => {
+      if (Semver.blocRank(increaseRequired) <= Semver.blocRank(actualIncreaseType)) return;
+      actualIncreaseType = increaseRequired;
+      const newVersion = headVersion.increase(increaseRequired).toFixedString();
+      console.info(`${pkg.getName()}: ${headVersion.toString()} => ${newVersion}\nBecause ${cause}`);
+      pkg.index.setVersion(newVersion);
+      if (canUpdateWork) pkg.work.setVersion(newVersion);
+      pkg.index.emit('version', newVersion);
+    });
+
+    await Promise.all(DepsDiffManager.DEPS_BLOC_NAMES.map(
+      async bloc => { await this.fixBloc(pkg, bloc); }
+    ));
+  }
+
+  public async fixBloc (pkg: Package, bloc: DepsBlocName): Promise<void> {
+    log('fixBloc', pkg.getName(), bloc);
+    const deps = (await pkg.index.get([bloc])) as Record<string, string> | undefined;
+
+    if (!deps) return;
+
+    await Promise.all(Object.entries(deps).map(
+      async ([dep, version]) => { await this.fixOneDep(pkg, bloc, dep, version); }
+    ));
+  }
+
+  public async fixOneDep (
+    pkg: Package, bloc: DepsBlocName, dep: string, version: string
+  ): Promise<void> {
+    log('fixOneDep', pkg.getName(), bloc, dep);
+    const pkgHeadDepVersion = await pkg.head.get([bloc, dep]) as string | null;
+
+    // Added dependencies are managed by CodeDiffManager
+    if (!pkgHeadDepVersion) return;
+
+    const pkgHeadDepSemver = new Semver(pkgHeadDepVersion);
+    let actualIncreaseType = pkgHeadDepSemver.increaseType(version);
+    if (actualIncreaseType) pkg.index.emit('need-update', actualIncreaseType);
+
+    const depPkg = await this.workspace.getPackageByName(dep);
+    if (!depPkg) return;
+
+    const depPkgHeadVersion = await depPkg.head.getVersion();
+    const isWorkSync = await pkg.work.get([bloc, dep]) === await pkg.index.get([bloc, dep]);
+    const canUpdateWork = isWorkSync;
+
+    // eslint-disable-next-line func-style
+    const handleDepPkgVersion = (newVersion: string): void => {
+      const increaseType = pkgHeadDepSemver.increaseType(newVersion);
+      if (!increaseType) return;
+      if (Semver.blocRank(actualIncreaseType) >= Semver.blocRank(increaseType)) return;
+
+      const event = `${pkg.getName()}[${bloc}.${dep}]: ${pkgHeadDepVersion} => ${newVersion}`;
+      const cause = `${depPkg.getName()}: ${depPkgHeadVersion.toString()} => ${newVersion}`;
+
+      console.info(`${event}\nBecause ${cause}\n`);
+      actualIncreaseType = increaseType;
+      pkg.index.set([bloc, dep], newVersion);
+      if (canUpdateWork) pkg.work.set([bloc, dep], newVersion);
+      pkg.index.emit('need-update', actualIncreaseType, event);
+    };
+
+    depPkg.index.on('version', handleDepPkgVersion);
+    handleDepPkgVersion((await depPkg.index.getVersion()).toString());
   }
 
   public async promptAll (): Promise<Messager> {
@@ -64,46 +145,61 @@ export default class DepsDiffManager {
   ): Promise<Messager> {
     log('promptOneDep', pkg.getName(), bloc, dep);
     const messager = new Messager(dep);
-
-    if (version === '*') return messager;
-
-    const depPkg = await this.workspace.getPackageByName(dep);
-    if (depPkg) {
-      const currentVersion = String(await depPkg.getNewValue('version'));
-      if (currentVersion !== version) {
-        const error = new Messager('Dépendance non cohérente');
-        error.push(`version actuelle de ${dep}: ${currentVersion}`);
-        error.push(`version utilisée dans ${pkg.getName()}: ${version}`);
-        messager.push(error);
-      }
-    }
-
-    const oldVersion = await pkg.getOldValue([bloc, dep]) as string;
-    const oldSemver = new Semver(oldVersion);
-    const isRegression = oldSemver.isLowerThan(version);
-    const increaseRequirement = isRegression ? 'major' : oldSemver.updateType(version);
-
-    if (increaseRequirement) {
-      const pkgOldVersion = await pkg.getOldVersion();
-      const pkgNewVersion = await pkg.getNewVersion();
-      const actualIncreaseType = pkgOldVersion.increaseType(pkgNewVersion);
-      const increaseError =
-        !actualIncreaseType ||
-        Semver[actualIncreaseType.toUpperCase() as Uppercase<SemverBlocName>] <
-          Semver[increaseRequirement.toUpperCase() as Uppercase<SemverBlocName>];
-
-      if (increaseError) {
-        const error = new Messager('Augmentation de version necessaire');
-        error.push(`Dépendance : ${oldVersion} => ${version} = ${increaseRequirement}${
-          isRegression ? ' (regression)' : ''
-        }.`);
-        error.push(`Package : ${pkgOldVersion.toString()} => ${pkgNewVersion.toString()} = ${
-          actualIncreaseType ?? 'aucune augmentation de version'
-        }.`);
-        messager.push(error);
-      }
-    }
-
+    messager.push(await this.promptInconsistentDep(pkg, bloc, dep, version));
+    messager.push(await promptBiggerDepUpdate(pkg, bloc, dep, version));
     return messager;
   }
+
+  private async promptInconsistentDep (
+    pkg: Package, bloc: DepsBlocName, dep: string, version: string
+  ): Promise<Messager> {
+    const messager = new Messager('Dépendance non cohérente');
+    const depPkg = await this.workspace.getPackageByName(dep);
+
+    if (!depPkg || version === '*') return messager;
+
+    const currentVersion = String(await depPkg.index.get('version'));
+    if (currentVersion !== version) {
+      messager.push(`version actuelle de ${dep}: ${currentVersion}`);
+      messager.push(`version utilisée dans ${pkg.getName()}: ${version}`);
+    }
+    return messager;
+  }
+}
+
+async function promptBiggerDepUpdate (
+  pkg: Package, bloc: DepsBlocName, dep: string, version: string
+): Promise<Messager> {
+  const messager = new Messager('Augmentation de version necessaire');
+
+  let increaseRequirement = null;
+  let isRegression = false;
+  const pkgHeadDepVersion = await pkg.head.get([bloc, dep]) as string;
+  if (pkgHeadDepVersion === '*') {
+    isRegression = version !== pkgHeadDepVersion;
+    increaseRequirement = isRegression ? 'major' : null;
+  } else {
+    const oldSemver = new Semver(pkgHeadDepVersion);
+    isRegression = oldSemver.isGreatherThan(version);
+    increaseRequirement = isRegression ? 'major' : oldSemver.updateType(version);
+  }
+  if (!increaseRequirement) return messager;
+
+  const pkgOldVersion = await pkg.getOldVersion();
+  const pkgNewVersion = await pkg.getNewVersion();
+  const actualIncreaseType = pkgOldVersion.increaseType(pkgNewVersion);
+  const increaseError =
+    !actualIncreaseType ||
+    Semver[actualIncreaseType.toUpperCase() as Uppercase<SemverBlocName>] <
+      Semver[increaseRequirement.toUpperCase() as Uppercase<SemverBlocName>];
+
+  if (increaseError) {
+    messager.push(`Dépendance : ${pkgHeadDepVersion} => ${version} = ${increaseRequirement}${
+      isRegression ? ' (regression)' : ''
+    }.`);
+    messager.push(`Package : ${pkgOldVersion.toString()} => ${pkgNewVersion.toString()} = ${
+      actualIncreaseType ?? 'aucune augmentation de version'
+    }.`);
+  }
+  return messager;
 }

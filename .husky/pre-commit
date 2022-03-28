@@ -3,5 +3,5 @@
 
 echo 'precommit hooks'
 echo '[ START ] yarn monorepos-interdeps'
-yarn monorepos-interdeps
+yarn monorepos-interdeps --fix
 echo '[SUCCESS] yarn monorepos-interdeps'

@@ -4,21 +4,31 @@ import deepExtend from 'deep-extend';
 import fs from 'fs-extra';
 import { get, set } from 'lodash';
 
+import PackageFileHead from './PackageFileHead';
+import PackageFileIndex from './PackageFileIndex';
+import PackageFileWork from './PackageFileWork';
 import Semver from './Semver';
 import type { SemverBlocName } from './Semver';
 import type Workspace from './Workspace';
 
 export default class Package {
+  public readonly head: PackageFileHead;
+  public readonly index: PackageFileIndex;
+  public readonly work: PackageFileWork;
+
   private pkgOld: Promise<Record<string, unknown> | null> | null = null;
   private pkgNew: Promise<Record<string, unknown> | null> | null = null;
   private pkgWork: Promise<Record<string, unknown> | null> | null = null;
   private dirty: Promise<boolean> = Promise.resolve(false);
-  private readonly packageFile: string;
+  private readonly file: string;
   private readonly workspace: Workspace;
 
-  public constructor (packageFile: string, workspace: Workspace) {
-    this.packageFile = packageFile;
+  public constructor (file: string, workspace: Workspace) {
+    this.file = file;
     this.workspace = workspace;
+    this.head = new PackageFileHead(this.file, this);
+    this.index = new PackageFileIndex(this.file, this);
+    this.work = new PackageFileWork(this.file, this);
   }
 
   public getWorkspace (): Workspace {
@@ -26,11 +36,11 @@ export default class Package {
   }
 
   public getPackageFile (): string {
-    return this.packageFile;
+    return this.file;
   }
 
   public getName (): string {
-    return this.packageFile.slice(this.workspace.getWorkspaceFolder().length).split(path.sep)[1];
+    return this.file.slice(this.workspace.getWorkspaceFolder().length).split(path.sep)[1];
   }
 
   public async getOldValue (prop: string[] | string): Promise<unknown> {
@@ -64,7 +74,7 @@ export default class Package {
     const currentValue = this.getWorkJS();
     this.pkgWork = currentValue.then(jsval => {
       if (!jsval)
-        throw new Error(`impossible de changer le contenu du fichier "${this.packageFile}", il n'existe pas.`);
+        throw new Error(`impossible de changer le contenu du fichier "${this.file}", il n'existe pas.`);
       return set(deepExtend({}, jsval), prop, value);
     });
     this.dirty = this.pkgWork.then(() => true);
@@ -72,7 +82,7 @@ export default class Package {
 
   public async save (): Promise<this> {
     const [record, dirty] = await Promise.all([this.pkgWork, this.dirty]);
-    if (dirty) await fs.writeJSON(this.packageFile, record, { spaces: 2 });
+    if (dirty) await fs.writeJSON(this.file, record, { spaces: 2 });
     return this;
   }
 
@@ -83,14 +93,14 @@ export default class Package {
 
   private async _getWorkJS (): Promise<Record<string, unknown> | null> {
     const jsval = (
-      await fs.readJSON(this.packageFile, { 'throws': false })
+      await fs.readJSON(this.file, { 'throws': false })
     ) as Record<string, unknown> | null;
     return jsval;
   }
 
   private async _getJS (ref: ':' | 'HEAD:'): Promise<Record<string, unknown> | null> {
     const gitRoot = await this.workspace.getGitRoot();
-    const file = path.relative(gitRoot, this.packageFile).replace(/\\/gu, '/');
+    const file = path.relative(gitRoot, this.file).replace(/\\/gu, '/');
     const content = await this.workspace.git.show(`${ref}${file}`).catch(() => null);
 
     try {
