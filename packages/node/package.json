@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-node",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "my eslint shared config for native node projects",
   "main": "index.json",
   "files": [
@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
-    "eslint-config-pulsovi": "3.8.13",
+    "eslint-config-pulsovi": "3.9.0",
     "eslint-plugin-node": "^11.1.0"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi",
-  "version": "3.8.13",
+  "version": "3.9.0",
   "description": "my eslint shared config",
   "main": "index.json",
   "author": "David GABISON <david.gabison@outlook.com>",
@@ -14,7 +14,7 @@
     "react.json"
   ],
   "dependencies": {
-    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-pulsovi": "0.1.5"
   },
