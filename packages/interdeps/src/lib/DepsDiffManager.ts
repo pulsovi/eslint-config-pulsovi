@@ -78,9 +78,12 @@ export default class DepsDiffManager {
 
     const pkgHeadDepSemver = new Semver(pkgHeadDepVersion);
     let actualIncreaseType = pkgHeadDepSemver.increaseType(version);
-    if (actualIncreaseType) pkg.index.emit('need-update', actualIncreaseType);
-
     const depPkg = await this.workspace.getPackageByName(dep);
+    if (actualIncreaseType) {
+      const event = `${pkg.getName()}[${bloc}.${dep}]: ${pkgHeadDepVersion} => ${version}`;
+      pkg.index.emit('need-update', depPkg ? actualIncreaseType : 'fix', event);
+    }
+
     if (!depPkg) return;
 
     const depPkgHeadVersion = await depPkg.head.getVersion();
@@ -175,6 +178,8 @@ async function promptBiggerDepUpdate (
   let increaseRequirement = null;
   let isRegression = false;
   const pkgHeadDepVersion = await pkg.head.get([bloc, dep]) as string;
+  const depPkg = await pkg.getWorkspace().getPackageByName(dep);
+
   if (pkgHeadDepVersion === '*') {
     isRegression = version !== pkgHeadDepVersion;
     increaseRequirement = isRegression ? 'major' : null;
@@ -183,6 +188,9 @@ async function promptBiggerDepUpdate (
     isRegression = oldSemver.isGreatherThan(version);
     increaseRequirement = isRegression ? 'major' : oldSemver.updateType(version);
   }
+
+  if (!depPkg) increaseRequirement = increaseRequirement && 'fix';
+
   if (!increaseRequirement) return messager;
 
   const pkgOldVersion = await pkg.getOldVersion();
