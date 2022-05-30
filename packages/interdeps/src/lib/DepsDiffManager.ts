@@ -177,16 +177,25 @@ async function promptBiggerDepUpdate (
 
   let increaseRequirement = null;
   let isRegression = false;
-  const pkgHeadDepVersion = await pkg.head.get([bloc, dep]) as string;
+  let pkgHeadDepOldVersion = '';
+  const pkgHeadDepVersion = await pkg.head.get([bloc, dep]);
   const depPkg = await pkg.getWorkspace().getPackageByName(dep);
 
-  if (pkgHeadDepVersion === '*') {
-    isRegression = version !== pkgHeadDepVersion;
-    increaseRequirement = isRegression ? 'major' : null;
+  if ('string' === typeof pkgHeadDepVersion) {
+    pkgHeadDepOldVersion = pkgHeadDepVersion;
+    if (pkgHeadDepVersion === '*') {
+      isRegression = version !== pkgHeadDepVersion;
+      increaseRequirement = isRegression ? 'major' : null;
+    } else {
+      const oldSemver = new Semver(pkgHeadDepVersion);
+      isRegression = oldSemver.isGreatherThan(version);
+      increaseRequirement = isRegression ? 'major' : oldSemver.updateType(version);
+    }
   } else {
-    const oldSemver = new Semver(pkgHeadDepVersion);
-    isRegression = oldSemver.isGreatherThan(version);
-    increaseRequirement = isRegression ? 'major' : oldSemver.updateType(version);
+    // new dependency
+    pkgHeadDepOldVersion = '';
+    isRegression = false;
+    increaseRequirement = null;
   }
 
   if (!depPkg) increaseRequirement = increaseRequirement && 'fix';
@@ -202,7 +211,7 @@ async function promptBiggerDepUpdate (
       Semver[increaseRequirement.toUpperCase() as Uppercase<SemverBlocName>];
 
   if (increaseError) {
-    messager.push(`Dépendance : ${pkgHeadDepVersion} => ${version} = ${increaseRequirement}${
+    messager.push(`Dépendance : ${pkgHeadDepOldVersion} => ${version} = ${increaseRequirement}${
       isRegression ? ' (regression)' : ''
     }.`);
     messager.push(`Package : ${pkgOldVersion.toString()} => ${pkgNewVersion.toString()} = ${

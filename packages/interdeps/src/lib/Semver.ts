@@ -23,6 +23,8 @@ export default class Semver {
   private readonly source: SemverRecord | string;
 
   public constructor (semver: SemverRecord | string) {
+    if (!['string', 'object'].includes(typeof semver) || !semver)
+      throw new TypeError(`The "semver" must be string or object, ${semver as string} provided`);
     this.source = semver;
     const record = Semver.split(semver);
     this.sigil = record.sigil;
