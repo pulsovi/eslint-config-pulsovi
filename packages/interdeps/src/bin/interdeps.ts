@@ -13,5 +13,5 @@ program
     log('main ends successfull');
   }, reason => {
     console.info('main fail with', reason);
-    process.exit(1);
+    process.exitCode = 1;
   });

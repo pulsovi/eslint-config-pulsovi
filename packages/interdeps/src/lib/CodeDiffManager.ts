@@ -38,7 +38,7 @@ export default class CodeDiffManager {
     console.error(
       'CodeDiffManager@isModifiedPackageFile: unknown package file modification : ',
       filteredDiff.filter(diffItem => !realDiffs.includes(diffItem)),
-      '\nsee: https://www.npmjs.com/package/deep-diff',
+      '\nsee: https://www.npmjs.com/package/deep-diff'
     );
     return await Promise.resolve(todo() as boolean);
   }
