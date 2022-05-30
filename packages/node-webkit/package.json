@@ -1,14 +1,14 @@
 {
   "name": "eslint-config-pulsovi-node-webkit",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "my eslint shared config for nw projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "eslint-config-pulsovi-browser": "0.1.2",
-    "eslint-config-pulsovi-node": "0.2.1"
+    "eslint-config-pulsovi-browser": "0.1.3",
+    "eslint-config-pulsovi-node": "0.2.2"
   },
   "peerDependencies": {
     "eslint": "^7.0.0 || ^8.0.0"

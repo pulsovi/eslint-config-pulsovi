@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-react",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "description": "my eslint shared config for react projects",
   "main": "index.json",
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
@@ -9,7 +9,7 @@
   "dependencies": {
     "@rushstack/eslint-patch": "^1.1.1",
     "babel-preset-react-app": "^10.0.1",
-    "eslint-config-pulsovi-browser": "0.1.2"
+    "eslint-config-pulsovi-browser": "0.1.3"
   },
   "peerDependencies": {
     "@typescript-eslint/parser": "^5.11.0",

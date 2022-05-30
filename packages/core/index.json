@@ -56,7 +56,7 @@
     "func-name-matching": "error",
     "func-names": "error",
     "func-style": ["error", "declaration"],
-    "function-paren-newline": "warn",
+    "function-paren-newline": ["warn", "consistent"],
     "generator-star-spacing": "error",
     "global-require": "error",
     "guard-for-in": "error",
