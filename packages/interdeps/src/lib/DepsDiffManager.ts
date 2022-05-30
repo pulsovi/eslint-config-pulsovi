@@ -188,7 +188,7 @@ async function promptBiggerDepUpdate (
       increaseRequirement = isRegression ? 'major' : null;
     } else {
       const oldSemver = new Semver(pkgHeadDepVersion);
-      isRegression = oldSemver.isGreatherThan(version);
+      isRegression = oldSemver.canBeGreatherThan(version);
       increaseRequirement = isRegression ? 'major' : oldSemver.updateType(version);
     }
   } else {

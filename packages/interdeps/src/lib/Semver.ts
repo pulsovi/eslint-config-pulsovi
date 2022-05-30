@@ -61,7 +61,8 @@ export default class Semver {
 
   public static sortBy (bloc: SemverBlocName, semverA: Semver, semverB: Semver): -1 | 0 | 1 {
     if (semverA.toString() === semverB.toString()) return 0;
-    if (semverA.or || semverB.or) throw new Error('Cannot compare OR Semver');
+    if (semverA.or || semverB.or)
+      throw new Error(`Cannot compare OR Semver: ${semverA.toString()} and ${semverB.toString()}`);
 
     const sigil = {
       fix: '~',
@@ -104,6 +105,31 @@ export default class Semver {
     };
   }
 
+  /*
+   * Is the greather resolution of this can be greather than the greather resolution or semver
+   */
+  public canBeGreatherThan (semver: Semver | SemverRecord | string): boolean {
+    const semverB = Semver.from(semver);
+    if (this.toString() === semverB.toString()) return false;
+    if (this.or?.canBeGreatherThan(semverB)) return true;
+    if (semverB.or?.canBeGreatherThan(this)) return false;
+    for (const bloc of Semver.BLOC_NAMES) {
+      const sigil = {
+        fix: '~',
+        major: '*',
+        minor: '^',
+      }[bloc];
+
+      if (this.sigil === sigil) {
+        if (semverB.sigil !== sigil) return true;
+      } else if (semverB.sigil === sigil) return false;
+
+      if (this[bloc] > semverB[bloc]) return true;
+      if (semverB[bloc] > this[bloc]) return false;
+    }
+    throw new Error(`These semver are the same but not identic ? ${this.toString()} and ${semverB.toString()}`);
+  }
+
   public clone (diff: Partial<SemverRecord> = {}): Semver {
     return new Semver({
       fix: this.fix,
@@ -143,7 +169,7 @@ export default class Semver {
 
   public increaseType (newVersion: Semver | string): SemverBlocName | null {
     const newSemver = Semver.from(newVersion);
-    if (!newSemver.isGreatherThan(this)) return null;
+    if (!newSemver.canBeGreatherThan(this)) return null;
     return this.updateType(newSemver);
   }
 
