@@ -1,10 +1,10 @@
 {
   "name": "eslint-config-pulsovi-typescript",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "my eslint shared config for typescript projects",
   "main": "index.json",
   "files": [
-    "index.js"
+    "index.json"
   ],
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
