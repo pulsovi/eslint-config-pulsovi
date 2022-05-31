@@ -1,6 +1,6 @@
 {
   "name": "eslint-pulsovi-interdeps",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "scripts": {
     "build": "rm -rf ./bin && rm -rf ./lib && yarn babel src --out-dir . --extensions \".ts\"",
     "lint": "yarn eslint .",

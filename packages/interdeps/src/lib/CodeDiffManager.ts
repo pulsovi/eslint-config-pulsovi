@@ -16,31 +16,19 @@ export default class CodeDiffManager {
     this.workspace = workspace;
   }
 
+  /**
+   * Is the package.json manifest of the pkg is modified
+   *
+   * if only dependencies of the package are modified, the package is not considered modified
+   * since the dependencies modifications are managed separately.
+   */
   private static async isModifiedPackageFile (pkg: Package): Promise<boolean> {
     log('isModifiedPackageFile', pkg.getName());
     const headJS = await pkg.head.getJS();
     const indexJS = await pkg.index.getJS();
     const diff = jsDiff(headJS, indexJS) ?? [];
-    const filteredDiff = diff.filter(diffItem => {
-      if (
-        diffItem.kind === 'E' &&
-        DepsDiffManager.DEPS_BLOC_NAMES.includes(diffItem.path?.[0] as unknown)
-      ) return false;
-      return true;
-    });
-    const realDiffs = filteredDiff.filter(diffItem => {
-      if (diffItem.kind !== 'E') return true;
-      return false;
-    });
-
-    if (!filteredDiff.length) return false;
-    if (realDiffs.length) return true;
-    console.error(
-      'CodeDiffManager@isModifiedPackageFile: unknown package file modification : ',
-      filteredDiff.filter(diffItem => !realDiffs.includes(diffItem)),
-      '\nsee: https://www.npmjs.com/package/deep-diff'
-    );
-    return await Promise.resolve(todo() as boolean);
+    // filter the dependencies differences out
+    return diff.some(diffItem => !DepsDiffManager.DEPS_BLOC_NAMES.includes(diffItem.path?.[0] as unknown));
   }
 
   public async processAllPackages (): Promise<string[]> {
