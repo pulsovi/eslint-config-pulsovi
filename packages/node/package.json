@@ -1,10 +1,10 @@
 {
   "name": "eslint-config-pulsovi-node",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "my eslint shared config for native node projects",
   "main": "index.json",
   "files": [
-    "index.js"
+    "index.json"
   ],
   "repository": "https://github.com/pulsovi/eslint-config-pulsovi.git",
   "author": "David GABISON <david.gabison@outlook.com>",
