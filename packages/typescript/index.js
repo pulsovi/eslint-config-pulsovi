@@ -68,6 +68,7 @@ module.exports = {
       allowAliases: 'always',
       allowLiterals: 'in-unions-and-intersections',
     }],
+    '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
     '@typescript-eslint/no-unused-vars': ['error', {
       args: 'after-used',
       argsIgnorePattern: '^_',
