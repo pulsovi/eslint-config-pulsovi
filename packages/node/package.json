@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-node",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "my eslint shared config for native node projects",
   "main": "index.json",
   "files": [
@@ -10,7 +10,6 @@
   "author": "David GABISON <david.gabison@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "@rushstack/eslint-patch": "^1.1.3",
     "eslint-config-pulsovi": "3.9.2",
     "eslint-plugin-node": "^11.1.0"
   },
