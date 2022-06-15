@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-pulsovi-typescript",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "my eslint shared config for typescript projects",
   "main": "index.json",
   "files": [
