@@ -5,7 +5,7 @@ My eslint config for TypeScript projects
 
 Add the dependency
 
-`yarn add -D typescript eslint @typescript-eslint/parser`
+`yarn add -D typescript eslint @typescript-eslint/parser eslint-config-pulsovi-typescript`
 
 Write eslint config file :
 
