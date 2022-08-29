@@ -11,8 +11,13 @@
     "read-pkg-up": "^7.0.0"
   },
   "scripts": {
+    "check-interdeps": "bash -c 'while ! yarn monorepos-interdeps monorepos-interdeps; do sleep 2; done'",
     "postinstall": "husky install",
-    "check-interdeps": "bash -c 'while ! yarn monorepos-interdeps monorepos-interdeps; do sleep 2; done'"
+    "pre-commit": "yarn npm-run-all pre-commit:\\*",
+    "pre-commit:typescript": "cd packages/typescript && yarn pre-commit"
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.2.0",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }

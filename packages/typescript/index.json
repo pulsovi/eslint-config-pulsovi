@@ -63,6 +63,7 @@
           "returnAssign": false
         }
       ],
+      "@typescript-eslint/no-invalid-void-type": ["warn", { "allowAsThisParameter": true }],
       "@typescript-eslint/no-magic-numbers": ["off", { "ignore": [-2, -1, 0, 1, 2, 1000] }],
       "@typescript-eslint/no-type-alias": ["warn", {
         "allowAliases": "always",
