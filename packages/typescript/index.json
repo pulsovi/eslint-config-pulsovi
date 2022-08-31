@@ -67,6 +67,7 @@
       "@typescript-eslint/no-magic-numbers": ["off", { "ignore": [-2, -1, 0, 1, 2, 1000] }],
       "@typescript-eslint/no-type-alias": ["warn", {
         "allowAliases": "in-unions-and-intersections",
+        "allowConditionalTypes": "always",
         "allowGenerics": "always",
         "allowMappedTypes": "always"
       }],
